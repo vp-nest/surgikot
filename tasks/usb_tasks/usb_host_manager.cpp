@@ -1,6 +1,7 @@
 #include "usb_host_manager.hpp"
 #include "task.h"
 #include "host_msd_fatfs.h"
+#include "usb_app.h"
 
 // ---------------------------------------------------------------------
 // Placeholder SDK surface.
@@ -85,9 +86,7 @@ bool UsbHostManager::init() {
         return false;
     }
 
-    if (USB_HostInit(kUsbControllerId, &m_hostHandle, &UsbHostEventTrampoline) != kStatus_USB_Success) {
-        return false;
-    }
+    USB_HostApplicationInit();
 
     BaseType_t ok1 = xTaskCreate(USB_HostTask, "USBHostTask", 1024,
                                   m_hostHandle, kUsbHostTaskPriority, nullptr);

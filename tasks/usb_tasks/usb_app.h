@@ -55,4 +55,16 @@ typedef enum _usb_host_app_state
     kStatus_DEV_Detached, /*!< device is detached */
 } usb_host_app_state_t;
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+void USB_HostTask(void *param);
+void USB_HostApplicationTaskFn(void* param);
+void USB_HostApplicationInit(void);
+
+#ifdef __cplusplus
+}
+#endif
+
 #endif /* __APP_H__ */

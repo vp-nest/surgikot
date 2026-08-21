@@ -52,11 +52,6 @@ static usb_status_t USB_HostEvent(usb_device_handle deviceHandle,
 /*!
  * @brief app initialization.
  */
-static void USB_HostApplicationInit(void);
-
-static void USB_HostTask(void *param);
-
-static void USB_HostApplicationTask(void *param);
 
 extern void USB_HostClockInit(void);
 extern void USB_HostIsrEnable(void);
@@ -170,7 +165,7 @@ static usb_status_t USB_HostEvent(usb_device_handle deviceHandle,
     return status;
 }
 
-static void USB_HostApplicationInit(void)
+void USB_HostApplicationInit(void)
 {
     usb_status_t status = kStatus_USB_Success;
 
@@ -190,49 +185,3 @@ static void USB_HostApplicationInit(void)
 
     usb_echo("host init done\r\n");
 }
-
-static void USB_HostTask(void *param)
-{
-    while (1)
-    {
-        USB_HostTaskFn(param);
-    }
-}
-
-static void USB_HostApplicationTask(void *param)
-{
-    while (1)
-    {
-        USB_HostMsdTask(param);
-    }
-}
-
-#if 0
-int main(void)
-{
-    BOARD_ConfigMPU();
-
-    BOARD_InitPins();
-    BOARD_BootClockRUN();
-    BOARD_InitDebugConsole();
-
-    USB_HostApplicationInit();
-
-    if (xTaskCreate(USB_HostTask, "usb host task", 2000L / sizeof(portSTACK_TYPE), g_HostHandle, 4, NULL) != pdPASS)
-    {
-        usb_echo("create host task error\r\n");
-    }
-    if (xTaskCreate(USB_HostApplicationTask, "app task", 2300L / sizeof(portSTACK_TYPE), &g_MsdFatfsInstance, 3,
-                    NULL) != pdPASS)
-    {
-        usb_echo("create mouse task error\r\n");
-    }
-
-    vTaskStartScheduler();
-
-    while (1)
-    {
-        ;
-    }
-}
-#endif
