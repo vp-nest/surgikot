@@ -3,6 +3,11 @@
 #include "queue.h"
 #include "event_groups.h"
 
+#include "board.h"
+#include "pin_mux.h"
+#include "clock_config.h"
+#include "fsl_debug_console.h"
+
 #include "app_types.hpp"
 #include "gui_task.hpp"
 #include "usb_upgrade_task.hpp"
@@ -24,9 +29,14 @@ static UsbUpgradeTask  s_upgradeTask;
 static LoggerTask      s_loggerTask;
 static UartCommTask    s_uartTask;
 
-int main(void) {
-    // BOARD_InitHardware();       // clocks, pinmux, RTC
-    // BOARD_InitDebugConsole();
+int main(void)
+{
+	BOARD_ConfigMPU();
+	BOARD_InitPins();
+	BOARD_BootClockRUN();
+	BOARD_InitDebugConsole();
+
+    PRINTF("\r\nSugikot Started...\r\n");
 
     g_upgradeQueue  = xQueueCreate(4,  sizeof(UpgradeMsg));
     g_loggerQueue   = xQueueCreate(16, sizeof(LogEventMsg));  // deepest: shared by every task
