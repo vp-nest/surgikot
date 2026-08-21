@@ -453,9 +453,9 @@
 						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="flash"/>
 						<entry flags="LOCAL|VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="freertos"/>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="littlefs"/>
-						<entry excluding="lfs_mflash.c|cpp_config.cpp|littlefs_shell.c|clock_freertos.c|lpuart_edma_transfer.c" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="source"/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="source"/>
 						<entry flags="LOCAL|VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="startup"/>
-						<entry excluding="usb_tasks/semihost_hardfault.c" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="tasks"/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="tasks"/>
 						<entry flags="LOCAL|VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="usb"/>
 						<entry flags="LOCAL|VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="utilities"/>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="vglite"/>
